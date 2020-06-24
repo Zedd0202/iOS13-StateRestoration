@@ -19,15 +19,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
     }
-
-    func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
-        return scene.userActivity
-    }
         
     func configure(window: UIWindow?, with activity: NSUserActivity) -> Bool {
         let detailViewController = SecondViewController()
         if let navigationController = window?.rootViewController as? UINavigationController {
-            
             navigationController.pushViewController(detailViewController, animated: false)
             detailViewController.restoreUserActivityState(activity)
             detailViewController.title = activity.userInfo?["title"] as? String
@@ -66,4 +61,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
+}
+
+extension SceneDelegate {
+    
+    // MARK: State Restoration
+
+        // This is the NSUserActivity that will be used to restore state when the scene reconnects.
+        func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
+            return scene.userActivity
+        }
 }

@@ -24,7 +24,8 @@ class SecondViewController: UIViewController {
     var detailUserActivity: NSUserActivity {
         let userActivity = NSUserActivity(activityType: SecondViewController.activityType)
         userActivity.title = "Restore Item"
-        userActivity.addUserInfoEntries(from: ["title": self.title])
+        let title: String = self.title ?? ""
+        userActivity.addUserInfoEntries(from: ["title": title])
         return userActivity
     }
     
